@@ -30,6 +30,7 @@ const selectors = {
   errorWrap: 'form-status__error-wrap',
   buttonSubmit: 'login__submit',
   emailInput: 'input__email',
+  passwordInput: 'input__password',
   emailInputStatus: 'input__email-status',
   passwordInputStatus: 'input__password-status'
 }
@@ -57,6 +58,15 @@ describe('Login Component', () => {
     fireEvent.input(emailInput, { target: { value: 'any_email' } })
     expect(validationSpy.input).toEqual({
       email: 'any_email'
+    })
+  })
+
+  test('Should call Validation with correct password', () => {
+    const { sut: { getByTestId }, validationSpy } = makeSut()
+    const passwordInput = getByTestId(selectors.passwordInput)
+    fireEvent.input(passwordInput, { target: { value: 'any_password' } })
+    expect(validationSpy.input).toEqual({
+      password: 'any_password'
     })
   })
 })
