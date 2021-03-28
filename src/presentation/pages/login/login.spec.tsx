@@ -28,9 +28,10 @@ const makeSut = (): SutTypes => {
 
 const selectors = {
   errorWrap: 'form-status__error-wrap',
-  buttonSubmit: 'submit',
-  emailInput: 'email-status',
-  passwordInput: 'password-status'
+  buttonSubmit: 'login__submit',
+  emailInput: 'input__email',
+  emailInputStatus: 'input__email-status',
+  passwordInputStatus: 'input__password-status'
 }
 
 describe('Login Component', () => {
@@ -42,17 +43,17 @@ describe('Login Component', () => {
     expect(errorWrap.childElementCount).toBe(0)
     const submitButton = getByTestId(selectors.buttonSubmit) as HTMLButtonElement
     expect(submitButton.disabled).toBe(true)
-    const emailStatus = getByTestId(selectors.emailInput)
+    const emailStatus = getByTestId(selectors.emailInputStatus)
     expect(emailStatus.title).toBe('Campo obrigatório')
     expect(emailStatus.textContent).toBe('🔴')
-    const passwordStatus = getByTestId(selectors.passwordInput)
+    const passwordStatus = getByTestId(selectors.passwordInputStatus)
     expect(passwordStatus.title).toBe('Campo obrigatório')
     expect(passwordStatus.textContent).toBe('🔴')
   })
 
   test('Should call Validation with correct email', () => {
     const { sut: { getByTestId }, validationSpy } = makeSut()
-    const emailInput = getByTestId('email')
+    const emailInput = getByTestId(selectors.emailInput)
     fireEvent.input(emailInput, { target: { value: 'any_email' } })
     expect(validationSpy.input).toEqual({
       email: 'any_email'

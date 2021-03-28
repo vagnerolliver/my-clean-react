@@ -30,8 +30,8 @@ const Input: React.FC<Props> = (props: Props) => {
   return (
     <div className={Styles.inputWrap}>
       {/* <input type="email" name="email" placeholder="Digite seu e-mail" /> */}
-      <input { ...props } data-testid={props.name} readOnly onFocus={enableInput} onChange={handleChange} />
-      <span data-testid={`${props.name}-status`} title={getTitle()} className={Styles.status}>{getStatus()}</span>
+      <input { ...props } data-testid={`input__${props.name}`} readOnly onFocus={enableInput} onChange={handleChange} />
+      <span data-testid={`input__${props.name}-status`} title={getTitle()} className={Styles.status}>{getStatus()}</span>
     </div>
   )
 }
