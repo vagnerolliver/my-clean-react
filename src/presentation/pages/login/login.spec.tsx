@@ -23,11 +23,12 @@ const makeSut = (params?: SutParams): SutTypes => {
 
 const selectors = {
   errorWrap: 'form-status__error-wrap',
-  buttonSubmit: 'login__submit',
+  submitButton: 'login__submit',
   emailInput: 'input__email',
   passwordInput: 'input__password',
   emailInputStatus: 'input__email-status',
-  passwordInputStatus: 'input__password-status'
+  passwordInputStatus: 'input__password-status',
+  spinnerElement: 'spinner'
 }
 
 describe('Login Component', () => {
@@ -40,7 +41,7 @@ describe('Login Component', () => {
     const errorWrap = getByTestId(selectors.errorWrap)
     expect(errorWrap.childElementCount).toBe(0)
 
-    const submitButton = getByTestId(selectors.buttonSubmit) as HTMLButtonElement
+    const submitButton = getByTestId(selectors.submitButton) as HTMLButtonElement
     expect(submitButton.disabled).toBe(true)
 
     const emailStatus = getByTestId(selectors.emailInputStatus)
@@ -89,5 +90,17 @@ describe('Login Component', () => {
     const passwordStatus = getByTestId(selectors.passwordInputStatus)
     expect(passwordStatus.title).toBe('Tudo certo!')
     expect(passwordStatus.textContent).toBe('🟢')
+  })
+
+  test('Should show spinner on submit', () => {
+    const { sut } = makeSut()
+    const emailInput = sut.getByTestId(selectors.emailInput)
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+    const passwordInput = sut.getByTestId(selectors.passwordInput)
+    fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
+    const submitButton = sut.getByTestId(selectors.submitButton)
+    fireEvent.click(submitButton)
+    const spinner = sut.getByTestId(selectors.spinnerElement)
+    expect(spinner).toBeTruthy()
   })
 })
