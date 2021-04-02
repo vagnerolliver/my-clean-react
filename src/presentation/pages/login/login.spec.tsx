@@ -17,9 +17,8 @@ class AuthenticationSpy implements Authentication {
   }
 }
 
-
 type SutTypes = {
-  sut: RenderResult,
+  sut: RenderResult
   authenticationSpy: AuthenticationSpy
 }
 
