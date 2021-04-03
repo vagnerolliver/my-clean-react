@@ -48,6 +48,7 @@ const simuteStatusForField = (sut: RenderResult, fieldName: string, validationEr
 }
 
 const selectors = {
+  form: 'login__form',
   errorWrap: 'form-status__error-wrap',
   submitButton: 'login__submit',
   emailInput: 'input__email',
@@ -123,5 +124,13 @@ describe('Login Component', () => {
     simulateValidSubmit(sut)
     simulateValidSubmit(sut)
     expect(authenticationSpy.callsCount).toBe(1)
+  })
+
+  test('Should not call Authentication if form is invalid', () => {
+    const validationError = faker.random.words()
+    const { sut, authenticationSpy } = makeSut({ validationError })
+    populateEmailField(sut)
+    fireEvent.submit(sut.getByTestId(selectors.form))
+    expect(authenticationSpy.callsCount).toBe(0)
   })
 })
