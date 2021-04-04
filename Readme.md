@@ -6,6 +6,17 @@ Curso Rodrigo Manguinho no Udemy - https://www.udemy.com/course/react-com-mango/
 
 # **4Dev React - Enquetes para Programadores**
 
+[![alt text](./public/img/course-logo.png "Link para o treinamento")](https://www.udemy.com/course/)
+
+---
+
+## [**Link para o curso completo**](https://www.udemy.com/course/)
+
+Essa sistema faz parte do treinamento do professor Rodrigo Manguinho (Mango) na Udemy.
+
+O objetivo do treinamento é mostrar como criar um sistema em ReactJs com uma arquitetura bem definida e desacoplada, utilizando TDD (programação orientada a testes) como metodologia de trabalho, Clean Architecture para fazer a distribuição de responsabilidades em camadas, sempre seguindo os princípios do SOLID, DRY, YAGNI, KISS e aplicando Design Patterns para resolver alguns problemas comuns.
+
+
 ## [**Link para a documentação da API**](http://fordevs.herokuapp.com/api-docs)
 
 > ## Princípios
@@ -36,6 +47,7 @@ Curso Rodrigo Manguinho no Udemy - https://www.udemy.com/course/react-com-mango/
 * TDD
 * Clean Architecture
 * DDD
+* Reactive Programming
 * Conventional Commits
 * GitFlow
 * Modular Design
@@ -84,9 +96,16 @@ Curso Rodrigo Manguinho no Udemy - https://www.udemy.com/course/react-com-mango/
 * Reset
 * Amend
 * Tag
+* Tag Anotada
 * Stash
 * Rebase
 * Merge
+* Add
+* Commit
+* Push
+* Pull
+* Shortlog
+* Status
 
 > ## Features do Typescript
 
