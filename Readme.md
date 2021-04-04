@@ -59,6 +59,7 @@ Curso Rodrigo Manguinho no Udemy - https://www.udemy.com/course/react-com-mango/
 * Faker
 * Coveralls
 * React Hooks
+* React Router
 * Husky
 * Lint Staged
 * Eslint
@@ -66,10 +67,12 @@ Curso Rodrigo Manguinho no Udemy - https://www.udemy.com/course/react-com-mango/
 
 > ## Features do React
 
+* React Testing Library
 * React Router
 * UseState
 * UseContext
 * UseEffect
+* UseHistory
 * Memo
 * Functional Components
 
