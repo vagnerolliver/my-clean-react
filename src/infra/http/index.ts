@@ -1,1 +1,1 @@
-export * from './axios-http-client/axiosHttpClient'
+export * from './axiosHttpClient/axiosHttpClient'
