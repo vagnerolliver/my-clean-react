@@ -1,6 +1,7 @@
 Curso Rodrigo Manguinho no Udemy - https://www.udemy.com/course/react-com-mango/
 
 [![Build Status](https://www.travis-ci.com/vagnerolliver/my-clean-react.svg?branch=main)](https://www.travis-ci.com/vagnerolliver/my-clean-react)
+[![Coverage Status](https://coveralls.io/repos/github/vagnerolliver/my-clean-react/badge.svg?branch=main)](https://coveralls.io/github/vagnerolliver/my-clean-react?branch=main)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 [![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
