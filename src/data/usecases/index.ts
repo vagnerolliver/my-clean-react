@@ -1,1 +1,1 @@
-export * from './remoteAuthentication'
+export * from './authentication/remoteAuthentication'
