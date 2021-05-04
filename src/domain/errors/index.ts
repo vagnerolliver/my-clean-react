@@ -1,2 +1,3 @@
-export * from './invalidCredentials'
-export * from './unexpected'
+export * from './invalidCredentialsError'
+export * from './unexpectedError'
+export * from './emailInUseError'
