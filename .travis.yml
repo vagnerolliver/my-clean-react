@@ -1,6 +1,13 @@
 language: node_js
-node_js: 
-  - 12
-script: 
-  - eslint 'src/**'
-  - npm run test:coveralls
+node_js:
+- 12
+
+script:
+- eslint 'src/**'
+- npm run test:coveralls
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: Yqx3S+XgzNvsAfn3TVtpCt/qInsZtnd1puHr7B4g4M4k8UwNj23P3qRwxe3TH7Fgj5BazIu8BQht7Uw/xieBHyU4qHVABhHITSRNp5A/K1J8vIXT7e4i/EASE99rLZU6Vcld9AkoindzXzMSEISJ+fYvNTx4ozpXNF8C4smO0lTP5nTwp1ncsCrAF0wyOV949RywctLeBYufwiUgmfGcHaoSW0rm8G9Bd/nAMeaTZj0MDI8hFz2D5xZZVynsQC9n06eT1acDx+RUUUddgtOzhIoKRbkHu8bAAy0fAPiJgpkQGbJVdqx17XJ3Dju0M+nhFgKN50NZ4fX24Jg7p20t2w3c2LiTT2OCsqu2AMVGGFlYyQQQR0xKK3KufSEToxMyR/vtVlq37oVhOkavmsTNcKzzRZSu3gZ8hfz5IQDtwavm6n+y5cR3Cv+Lt87vCiMOqyB7I+l00UPlparkd1mhnFlCwvyqGIJoV8FJ542yBPIUqMX+Ig+Ebows11GrpSqiHwTyNogXAZ9BbMhMbVBoo8jyBwwicJQR4B8arKuZHZF+8rauTG4salf5r09UNSatKsbAma3X25gV4yNbTtsZ+vz4+TjqXY/gModUcoFhmDWVX/6HHd+S9FEeftI4hO+PaW2JCvSfpFvZgN5K5BTtZmCIPzroO/BPPc3/F4OuYyQ=
+  on: main
