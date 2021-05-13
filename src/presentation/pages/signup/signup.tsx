@@ -24,7 +24,7 @@ const Signup: React.FC = () => {
           <Input type="password" name="password" placeholder="Digite sua senha" />
           <Input type="password" name="passwordConfirmation" placeholder="Repita sua senha" />
           <button data-testid="signup__submit" className={Styles.submit} type="submit" disabled>Criar Conta</button>
-          <span data-testid="signup__back-login" to="/login" className={Styles.link}>Voltar Login</span>
+          <span data-testid="signup__back-login" className={Styles.link}>Voltar Login</span>
           <FormStatus />
         </form>
         <Footer />
