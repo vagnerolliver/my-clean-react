@@ -2,10 +2,11 @@ import React from 'react'
 import faker from 'faker'
 import { Signup } from '@/presentation/pages'
 import { render, RenderResult, cleanup, waitFor, fireEvent } from '@testing-library/react'
-import { FormHelper as Helper, ValidationStub } from '@/presentation/test'
+import { FormHelper as Helper, ValidationStub, AddAccountSpy } from '@/presentation/test'
 
 type SutTypes = {
   sut: RenderResult
+  addAccountSpy: AddAccountSpy
 }
 
 type SutParams = {
@@ -15,13 +16,16 @@ type SutParams = {
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError
+  const addAccountSpy = new AddAccountSpy()
   const sut = render(
     <Signup
       validation={validationStub}
+      addAccount={addAccountSpy}
     />
   )
   return {
-    sut
+    sut,
+    addAccountSpy
   }
 }
 
@@ -41,12 +45,11 @@ const simulateValidSubmit = async (
   name = faker.internet.email(),
   email = faker.internet.email(),
   password = faker.internet.password(),
-  passwordConfirmation = faker.internet.password()
 ): Promise<void> => {
   Helper.populateField(sut, 'name', name)
   Helper.populateField(sut, 'email', email)
   Helper.populateField(sut, 'password', password)
-  Helper.populateField(sut, 'passwordConfirmation', passwordConfirmation)
+  Helper.populateField(sut, 'passwordConfirmation', password)
   const form = sut.getByTestId(selectors.form)
   fireEvent.submit(form)
   await waitFor(() => form)
@@ -131,5 +134,19 @@ describe('Login Component', () => {
     const { sut } = makeSut()
     await simulateValidSubmit(sut)
     Helper.testElementExists(sut, selectors.spinnerElement)
+  })
+
+  test('Should call AddAccount with correct values', async () => {
+    const { sut, addAccountSpy } = makeSut()
+    const name = faker.name.findName()
+    const email = faker.internet.email()
+    const password = faker.internet.password()
+    await simulateValidSubmit(sut, name, email, password)
+    expect(addAccountSpy.params).toEqual({
+      name,
+      email,
+      password,
+      passwordConfirmation: password
+    })
   })
 })
