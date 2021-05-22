@@ -44,7 +44,7 @@ const simulateValidSubmit = async (
   sut: RenderResult,
   name = faker.internet.email(),
   email = faker.internet.email(),
-  password = faker.internet.password(),
+  password = faker.internet.password()
 ): Promise<void> => {
   Helper.populateField(sut, 'name', name)
   Helper.populateField(sut, 'email', email)
@@ -148,5 +148,12 @@ describe('Login Component', () => {
       password,
       passwordConfirmation: password
     })
+  })
+
+  test('Should call addAccountSpy only once', async () => {
+    const { sut, addAccountSpy } = makeSut()
+    await simulateValidSubmit(sut)
+    await simulateValidSubmit(sut)
+    expect(addAccountSpy.callsAddAccount).toBe(1)
   })
 })
