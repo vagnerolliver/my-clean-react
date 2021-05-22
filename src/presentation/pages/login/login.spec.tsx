@@ -136,7 +136,7 @@ describe('Login Component', () => {
     const validationError = faker.random.words()
     const { sut, authenticationSpy } = makeSut({ validationError })
     await simulateValidSubmit(sut)
-    expect(authenticationSpy.callsCount).toBe(1)
+    expect(authenticationSpy.callsCount).toBe(0)
   })
 
   test('Should present error if Authentication fails', async () => {

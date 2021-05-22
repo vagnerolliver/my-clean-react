@@ -156,4 +156,11 @@ describe('Login Component', () => {
     await simulateValidSubmit(sut)
     expect(addAccountSpy.callsAddAccount).toBe(1)
   })
+
+  test('Should not call addAccountSpy if form is invalid', async () => {
+    const validationError = faker.random.words()
+    const { sut, addAccountSpy } = makeSut({ validationError })
+    await simulateValidSubmit(sut)
+    expect(addAccountSpy.callsAddAccount).toBe(0)
+  })
 })
