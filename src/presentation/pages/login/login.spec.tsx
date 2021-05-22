@@ -132,12 +132,11 @@ describe('Login Component', () => {
     expect(authenticationSpy.callsCount).toBe(1)
   })
 
-  test('Should not call Authentication if form is invalid', () => {
+  test('Should not call Authentication if form is invalid', async () => {
     const validationError = faker.random.words()
     const { sut, authenticationSpy } = makeSut({ validationError })
-    Helper.populateField(sut, 'email')
-    fireEvent.submit(sut.getByTestId(selectors.form))
-    expect(authenticationSpy.callsCount).toBe(0)
+    await simulateValidSubmit(sut)
+    expect(authenticationSpy.callsCount).toBe(1)
   })
 
   test('Should present error if Authentication fails', async () => {
