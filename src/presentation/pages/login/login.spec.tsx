@@ -48,11 +48,6 @@ const simulateValidSubmit = async (sut: RenderResult, email = faker.internet.ema
   await waitFor(() => form)
 }
 
-const testElementText = (sut: RenderResult, fieldName: string, text: string): void => {
-  const el = sut.getByTestId(fieldName)
-  expect(el.textContent).toBe(text)
-}
-
 const selectors = {
   form: 'login__form',
   submitButton: 'login__submit',
@@ -144,7 +139,7 @@ describe('Login Component', () => {
     const error = new InvalidCredentialsError()
     jest.spyOn(authenticationSpy, 'auth').mockRejectedValueOnce(error)
     await simulateValidSubmit(sut)
-    testElementText(sut, selectors.mainError, error.message)
+    Helper.testElementText(sut, selectors.mainError, error.message)
     Helper.testChildCount(sut, selectors.errorWrap, 1)
   })
 
@@ -162,7 +157,7 @@ describe('Login Component', () => {
     const error = new InvalidCredentialsError()
     jest.spyOn(saveAccessTokenMock, 'save').mockReturnValueOnce(Promise.reject(error))
     await simulateValidSubmit(sut)
-    testElementText(sut, selectors.mainError, error.message)
+    Helper.testElementText(sut, selectors.mainError, error.message)
     Helper.testChildCount(sut, selectors.errorWrap, 1)
   })
 
