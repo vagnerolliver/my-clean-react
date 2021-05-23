@@ -42,7 +42,7 @@ const makeSut = (params?: SutParams): SutTypes => {
 const selectors = {
   form: 'signup__form',
   submitButton: 'signup__submit',
-  signupLinkElement: 'signup__signup',
+  signupLinkElement: 'signup__login',
   errorWrap: 'form-status__error-wrap',
   mainError: 'form-status__main-error',
   emailInputStatus: 'input__email-status',
@@ -199,5 +199,13 @@ describe('Login Component', () => {
     await simulateValidSubmit(sut)
     Helper.testElementText(sut, selectors.mainError, error.message)
     Helper.testChildCount(sut, selectors.errorWrap, 1)
+  })
+
+  test('Should go to login page', () => {
+    const { sut } = makeSut()
+    const loginLink = sut.getByTestId(selectors.signupLinkElement)
+    fireEvent.click(loginLink)
+    expect(history.length).toBe(1)
+    expect(history.location.pathname).toBe('/login')
   })
 })
