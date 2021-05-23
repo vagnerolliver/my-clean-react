@@ -1,32 +1,41 @@
 import React from 'react'
+import { Router } from 'react-router-dom'
 import faker from 'faker'
+import { createMemoryHistory } from 'history'
 import { Signup } from '@/presentation/pages'
 import { render, RenderResult, cleanup, waitFor, fireEvent } from '@testing-library/react'
-import { FormHelper as Helper, ValidationStub, AddAccountSpy } from '@/presentation/test'
+import { FormHelper as Helper, ValidationStub, AddAccountSpy, SaveAccessTokenMock } from '@/presentation/test'
 import { EmailInUseError } from '@/domain/errors'
 
 type SutTypes = {
   sut: RenderResult
   addAccountSpy: AddAccountSpy
+  saveAccessTokenMock: SaveAccessTokenMock
 }
 
 type SutParams = {
   validationError: string
 }
 
+const history = createMemoryHistory({ initialEntries: ['/signup'] })
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
+  const saveAccessTokenMock = new SaveAccessTokenMock()
   validationStub.errorMessage = params?.validationError
   const addAccountSpy = new AddAccountSpy()
   const sut = render(
-    <Signup
-      validation={validationStub}
-      addAccount={addAccountSpy}
-    />
+    <Router history={history}>
+      <Signup
+        validation={validationStub}
+        addAccount={addAccountSpy}
+        saveAccessToken={saveAccessTokenMock}
+      />
+    </Router>
   )
   return {
     sut,
-    addAccountSpy
+    addAccountSpy,
+    saveAccessTokenMock
   }
 }
 
@@ -172,5 +181,14 @@ describe('Login Component', () => {
     await simulateValidSubmit(sut)
     Helper.testElementText(sut, selectors.mainError, error.message)
     Helper.testChildCount(sut, selectors.errorWrap, 1)
+  })
+
+  test('Should call SaveAccessToken on success', async () => {
+    const { sut, addAccountSpy, saveAccessTokenMock } = makeSut()
+    await simulateValidSubmit(sut)
+    await waitFor(() => sut.getByTestId(selectors.form))
+    expect(saveAccessTokenMock.accessToken).toBe(addAccountSpy.account.accessToken)
+    expect(history.length).toBe(1)
+    expect(history.location.pathname).toBe('/')
   })
 })
