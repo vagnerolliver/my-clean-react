@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Styles from './signup.scss'
 import { Footer, Input, LoginHeader, FormStatus } from '@/presentation/components'
 import { FormContext } from '@/presentation/contexts'
@@ -70,7 +70,7 @@ const Signup: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Pr
           <Input type="password" name="password" placeholder="Digite sua senha" />
           <Input type="password" name="passwordConfirmation" placeholder="Repita sua senha" />
           <button data-testid="signup__submit" className={Styles.submit} type="submit" disabled={!!state.nameError || !!state.emailError || !!state.passwordError || !!state.passwordConfirmationError} >Criar Conta</button>
-          <span data-testid="signup__back-login" className={Styles.link}>Voltar Login</span>
+          <Link data-testid="signup__login" replace to="/login" className={Styles.link}>Voltar Login</Link>
           <FormStatus />
         </form>
         <Footer />
