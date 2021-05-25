@@ -50,7 +50,7 @@ const simulateValidSubmit = async (sut: RenderResult, email = faker.internet.ema
 
 const selectors = {
   form: 'login__form',
-  submitButton: 'login__submit',
+  submitButton: 'submitButton',
   signupLinkElement: 'login__signup',
   errorWrap: 'form-status__error-wrap',
   mainError: 'form-status__main-error',

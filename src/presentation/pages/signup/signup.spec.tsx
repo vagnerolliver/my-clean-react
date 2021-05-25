@@ -41,7 +41,7 @@ const makeSut = (params?: SutParams): SutTypes => {
 
 const selectors = {
   form: 'signup__form',
-  submitButton: 'signup__submit',
+  submitButton: 'submitButton',
   signupLinkElement: 'signup__login',
   errorWrap: 'form-status__error-wrap',
   mainError: 'form-status__main-error',
