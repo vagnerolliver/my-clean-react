@@ -21,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^5.9.0",
     "@testing-library/react": "^11.0.4",
     "@types/axios": "^0.14.0",
     "@types/faker": "^5.5.3",
